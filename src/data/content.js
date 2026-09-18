@@ -13,6 +13,9 @@ export const profile = {
   linkedin: 'https://linkedin.com/in/athul-kv-16a3ab256',
   linkedinHandle: 'athul-kv-16a3ab256',
   resume: '/Athul_KV_Resume.pdf',
+  // Flip showPhoto to true to swap the hero monogram for the portrait.
+  // The processed cut-out is already in public/photo/ and ready to use.
+  showPhoto: false,
   photo: '/photo/athul.webp',
   // Roles Athul is open to — shown as an "Open to" band under the hero.
   roles: [

@@ -179,34 +179,46 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Visual area: terracotta disc + monogram, with the stamp overlapping. */}
+          {/* Visual area: monogram disc (or the portrait, see profile.showPhoto). */}
           <motion.div
             {...fade(0.3)}
-            className="relative mx-auto w-full max-w-[360px] lg:col-span-5 lg:mx-0 lg:ml-auto lg:max-w-[400px]"
+            className="relative mx-auto w-full max-w-[420px] lg:col-span-5 lg:mx-0 lg:max-w-none"
           >
-            {/* A framed editorial portrait, not a circular avatar: a circle
-                slices the shoulders off a head-and-shoulders studio shot and
-                leaves it reading as a cut-out sticker. */}
-            <div className="relative aspect-[4/5] w-full overflow-hidden border border-line bg-elevated">
-              <img
-                src={profile.photo}
-                alt={`${profile.name}, ${profile.title}`}
-                width="869"
-                height="1180"
-                fetchPriority="high"
-                decoding="async"
-                className="h-full w-full object-cover object-top"
-              />
-              {/* Hairline rule across the base, tying the frame to the grid. */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-0 bottom-0 h-px bg-line"
-              />
-            </div>
+            {profile.showPhoto ? (
+              /* Framed editorial portrait, not a circular avatar: a circle
+                 slices the shoulders off a head-and-shoulders studio shot. */
+              <div className="relative aspect-[4/5] w-full overflow-hidden border border-line bg-elevated">
+                <img
+                  src={profile.photo}
+                  alt={`${profile.name}, ${profile.title}`}
+                  width="869"
+                  height="1180"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full w-full object-cover object-top"
+                />
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 bottom-0 h-px bg-line"
+                />
+              </div>
+            ) : (
+              <div className="relative aspect-square w-full">
+                <div className="absolute inset-[11%] rounded-full bg-accent" aria-hidden="true" />
+                <div
+                  className="absolute inset-0 rounded-full border border-line"
+                  aria-hidden="true"
+                />
+                <span className="absolute inset-0 grid place-items-center">
+                  <span className="font-serif text-[clamp(4rem,14vw,7.5rem)] leading-none text-bg">
+                    {profile.initials}
+                  </span>
+                </span>
+              </div>
+            )}
 
-            {/* Sits in the empty corner outside the disc so the rotating text
-                never runs across the terracotta. */}
-            <div className="absolute -bottom-7 -left-5 z-10 sm:-bottom-8 sm:-left-8">
+            {/* Tucks into the corner the disc leaves empty. */}
+            <div className="absolute -bottom-3 -left-2 z-10 sm:-bottom-4 sm:-left-4 lg:-bottom-6 lg:-left-7">
               <Stamp />
             </div>
           </motion.div>
