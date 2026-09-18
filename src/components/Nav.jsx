@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { FileText, Menu, Moon, Sun, X } from 'lucide-react'
+import { ArrowRight, Asterisk, Menu, Moon, Sun, X } from 'lucide-react'
 import { nav, profile } from '../data/content'
 
 function useActiveSection() {
@@ -8,9 +8,7 @@ function useActiveSection() {
 
   useEffect(() => {
     const ids = nav.map((n) => n.href.slice(1))
-    const sections = ids
-      .map((id) => document.getElementById(id))
-      .filter(Boolean)
+    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean)
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -33,11 +31,13 @@ function useTheme() {
   const [dark, setDark] = useState(() =>
     typeof document !== 'undefined'
       ? document.documentElement.classList.contains('dark')
-      : true
+      : false
   )
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark)
+    const meta = document.querySelector('meta[name="theme-color"]')
+    if (meta) meta.setAttribute('content', dark ? '#141310' : '#F5F1E9')
     try {
       localStorage.setItem('theme', dark ? 'dark' : 'light')
     } catch (e) {
@@ -55,7 +55,7 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
+    const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -78,33 +78,30 @@ export default function Nav() {
     <>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-6 focus:top-6 focus:z-[60] focus:bg-accent focus:px-5 focus:py-3 focus:text-[11px] focus:uppercase focus:tracking-label focus:text-white"
       >
         Skip to content
       </a>
 
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition duration-300 ${
+        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
           scrolled
-            ? 'border-b border-line bg-bg/80 backdrop-blur-xl'
+            ? 'border-b border-line bg-bg/90 backdrop-blur-sm'
             : 'border-b border-transparent'
         }`}
       >
-        <nav className="shell flex h-16 items-center justify-between gap-4" aria-label="Primary">
+        <nav className="shell flex h-[72px] items-center justify-between gap-6" aria-label="Primary">
+          {/* Masthead mark */}
           <a
             href="#top"
-            className="group flex items-center gap-3 rounded-lg"
+            className="flex items-center gap-3"
             aria-label={`${profile.name} — back to top`}
           >
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-accent font-display text-sm font-bold text-white">
-              {profile.initials}
-            </span>
-            <span className="hidden font-display text-sm font-semibold tracking-tight sm:block">
-              {profile.name}
-            </span>
+            <Asterisk size={16} aria-hidden="true" className="text-accent" />
+            <span className="label-ink !tracking-wider2">{profile.name}</span>
           </a>
 
-          <ul className="hidden items-center gap-1 md:flex">
+          <ul className="hidden items-center gap-8 md:flex">
             {nav.map((item) => {
               const isActive = active === item.href.slice(1)
               return (
@@ -112,16 +109,16 @@ export default function Nav() {
                   <a
                     href={item.href}
                     aria-current={isActive ? 'true' : undefined}
-                    className={`relative rounded-lg px-3 py-2 text-sm font-medium transition ${
-                      isActive ? 'text-accent' : 'text-muted hover:text-ink'
+                    className={`relative block py-1 label transition-colors duration-300 ${
+                      isActive ? '!text-accent' : 'hover:!text-ink'
                     }`}
                   >
                     {item.label}
                     {isActive && (
                       <motion.span
                         layoutId="nav-active"
-                        className="absolute inset-x-3 -bottom-0.5 h-px bg-accent"
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        className="absolute -bottom-0.5 left-0 h-px w-full bg-accent"
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                       />
                     )}
                   </a>
@@ -130,34 +127,38 @@ export default function Nav() {
             })}
           </ul>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4 sm:gap-6">
             <button
               type="button"
               onClick={toggleTheme}
-              className="icon-link"
+              className="text-muted transition-colors duration-300 hover:text-accent"
               aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
             >
-              {dark ? <Sun size={17} aria-hidden="true" /> : <Moon size={17} aria-hidden="true" />}
+              {dark ? <Sun size={16} aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
             </button>
 
             <a
               href={profile.resume}
-              className="btn-ghost hidden !px-4 !py-2 sm:inline-flex"
               target="_blank"
               rel="noreferrer"
+              className="group link-arrow hidden sm:inline-flex"
             >
-              <FileText size={15} aria-hidden="true" />
               Resume
+              <ArrowRight
+                size={14}
+                aria-hidden="true"
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
             </a>
 
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="icon-link md:hidden"
+              className="text-ink transition-colors duration-300 hover:text-accent md:hidden"
               aria-label="Open menu"
               aria-expanded={open}
             >
-              <Menu size={18} aria-hidden="true" />
+              <Menu size={20} aria-hidden="true" />
             </button>
           </div>
         </nav>
@@ -170,10 +171,10 @@ export default function Nav() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.25 }}
           >
             <div
-              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+              className="absolute inset-0 bg-ink/40"
               onClick={() => setOpen(false)}
               aria-hidden="true"
             />
@@ -181,34 +182,35 @@ export default function Nav() {
               role="dialog"
               aria-modal="true"
               aria-label="Menu"
-              className="absolute right-0 top-0 flex h-full w-[min(20rem,85vw)] flex-col border-l border-line bg-surface p-6"
+              className="absolute right-0 top-0 flex h-full w-[min(22rem,88vw)] flex-col border-l border-line bg-bg px-7 py-6"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="flex items-center justify-between">
-                <span className="font-display text-sm font-semibold">Menu</span>
+                <span className="label">Menu</span>
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="icon-link"
+                  className="text-ink transition-colors hover:text-accent"
                   aria-label="Close menu"
                   autoFocus
                 >
-                  <X size={18} aria-hidden="true" />
+                  <X size={20} aria-hidden="true" />
                 </button>
               </div>
 
-              <ul className="mt-8 flex flex-col gap-1">
-                {nav.map((item) => (
-                  <li key={item.href}>
+              <ul className="mt-10 flex flex-col">
+                {nav.map((item, i) => (
+                  <li key={item.href} className="border-b border-line">
                     <a
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className="block rounded-xl px-3 py-3 text-lg font-medium text-ink transition hover:bg-elevated"
+                      className="flex items-baseline gap-4 py-5 transition-colors duration-300 hover:text-accent"
                     >
-                      {item.label}
+                      <span className="label !text-accent">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="font-serif text-2xl">{item.label}</span>
                     </a>
                   </li>
                 ))}
@@ -218,10 +220,10 @@ export default function Nav() {
                 href={profile.resume}
                 target="_blank"
                 rel="noreferrer"
-                className="btn-primary mt-auto w-full"
+                className="btn-solid mt-auto w-full"
               >
-                <FileText size={16} aria-hidden="true" />
                 Resume
+                <ArrowRight size={14} aria-hidden="true" />
               </a>
             </motion.div>
           </motion.div>

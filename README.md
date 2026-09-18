@@ -54,25 +54,31 @@ Both are zero-config for this project; there is no backend or environment variab
 src/
   App.jsx
   main.jsx
-  index.css            design tokens (light + dark) and component classes
-  data/content.js      ALL site copy
+  index.css            design tokens (light + dark) and editorial component classes
+  data/content.js      ALL site copy + `editorial` presentation metadata
   components/
-    Nav.jsx            sticky nav, scroll-spy, theme toggle, mobile sheet
-    Hero.jsx
-    Experience.jsx     timeline
-    Projects.jsx       featured HRMS card + project cards
-    Skills.jsx
+    Nav.jsx            masthead nav, scroll-spy, theme toggle, mobile sheet
+    Hero.jsx           oversized wordmark, intro, monogram disc + rotating stamp
+    Experience.jsx     hairline-ruled editorial rows
+    Projects.jsx       alternating cover / detail spreads
+    Skills.jsx         pull quote + grouped skill index
     About.jsx          bio + education + certification
-    Contact.jsx        contact cards with copy-to-clipboard
+    Contact.jsx        contact rows with copy-to-clipboard
     Footer.jsx
-    Section.jsx        shared section header/layout
-    Reveal.jsx         scroll-into-view animation wrapper
+    Section.jsx        shared two-line heading + lede + action masthead
+    Reveal.jsx         Reveal, MaskReveal and RuleReveal motion wrappers
 ```
 
 ## Notes
 
-- Dark theme is the default; the toggle persists to `localStorage` and is applied
-  before first paint (inline script in `index.html`) so there is no flash.
+- **Design language:** warm cream / charcoal / terracotta editorial palette. Anton for the
+  oversized wordmarks, Playfair Display for headings, Inter for body copy, JetBrains Mono
+  for small technical labels.
+- **Light theme is the default**; the toggle persists to `localStorage` and is applied
+  before first paint (inline script in `index.html`) so there is no flash. A warm dark
+  theme is available from the same toggle.
 - All motion respects `prefers-reduced-motion`.
 - There is no contact form — the site is fully static, so email/phone/profile links
   are used instead.
+- Project "covers" are built from each project's own material (name, modules, measured
+  numbers) rather than screenshots, so nothing on the page is invented.

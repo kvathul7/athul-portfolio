@@ -16,26 +16,29 @@ export default {
         'accent-soft': 'rgb(var(--accent-soft) / <alpha-value>)',
       },
       fontFamily: {
+        // Ultra-condensed grotesque for the oversized editorial headline.
+        display: ['Anton', 'Impact', 'ui-sans-serif', 'sans-serif'],
+        // Didone-ish serif for names and section headings.
+        serif: ['"Playfair Display"', 'Georgia', 'ui-serif', 'serif'],
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Space Grotesk"', 'Inter', 'ui-sans-serif', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       maxWidth: {
-        prose: '68ch',
-        shell: '1180px',
+        prose: '62ch',
+        shell: '1280px',
       },
-      boxShadow: {
-        card: '0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.18)',
-        lift: '0 2px 4px rgb(0 0 0 / 0.06), 0 20px 40px -20px rgb(0 0 0 / 0.35)',
+      letterSpacing: {
+        label: '0.2em',
+        wider2: '0.14em',
       },
       keyframes: {
-        drift: {
-          '0%, 100%': { transform: 'translate3d(0, 0, 0) scale(1)' },
-          '50%': { transform: 'translate3d(0, -24px, 0) scale(1.06)' },
+        'spin-slow': {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
         },
       },
       animation: {
-        drift: 'drift 18s ease-in-out infinite',
+        'spin-slow': 'spin-slow 26s linear infinite',
       },
     },
   },

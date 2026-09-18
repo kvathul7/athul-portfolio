@@ -1,65 +1,63 @@
-import { Award, GraduationCap } from 'lucide-react'
 import Section from './Section'
 import Reveal from './Reveal'
 import { certification, education, profile } from '../data/content'
 
 export default function About() {
   return (
-    <Section id="about" eyebrow="About" title="A little more context">
-      <div className="grid gap-10 lg:grid-cols-5 lg:gap-14">
-        <Reveal className="lg:col-span-3">
-          <div className="space-y-5">
-            {profile.about.map((para) => (
-              <p key={para} className="max-w-prose text-base leading-relaxed text-muted">
-                {para}
-              </p>
-            ))}
+    <Section id="about" titleTop="A Little" titleBottom="More Context">
+      <div className="grid grid-cols-1 gap-y-14 lg:grid-cols-12 lg:gap-x-14">
+        {/* Narrative — first paragraph set larger as a standfirst. */}
+        <Reveal className="lg:col-span-7">
+          <div className="max-w-prose">
+            {profile.about.map((para, i) =>
+              i === 0 ? (
+                <p
+                  key={para}
+                  className="font-serif text-[1.35rem] leading-[1.5] text-ink sm:text-[1.55rem]"
+                >
+                  {para}
+                </p>
+              ) : (
+                <p key={para} className="mt-6 text-[15px] leading-relaxed text-muted">
+                  {para}
+                </p>
+              )
+            )}
           </div>
         </Reveal>
 
-        <Reveal delay={0.1} className="lg:col-span-2">
-          <div className="space-y-4">
-            <div className="card p-6">
-              <h3 className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
-                <GraduationCap size={14} aria-hidden="true" />
-                Education
-              </h3>
-              <ul className="mt-5 space-y-5">
-                {education.map((e, i) => (
-                  <li
-                    key={`${e.school}-${e.detail}`}
-                    className={i > 0 ? 'border-t border-line pt-5' : ''}
-                  >
-                    <div className="flex items-baseline justify-between gap-3">
-                      <p className="text-sm font-semibold leading-snug">{e.school}</p>
-                      {e.period ? (
-                        <span className="shrink-0 font-mono text-[11px] text-faint">
-                          {e.period}
-                        </span>
-                      ) : null}
-                    </div>
-                    <p className="mt-1 text-sm text-muted">
-                      {e.detail} — <span className="text-accent">{e.result}</span>
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        {/* Education + certification as an editorial index. */}
+        <div className="lg:col-span-5">
+          <Reveal delay={0.08}>
+            <p className="label-accent">Education</p>
+            <ul className="mt-6 border-t border-line">
+              {education.map((e) => (
+                <li key={`${e.school}-${e.detail}`} className="border-b border-line py-5">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h3 className="font-serif text-lg leading-snug">{e.school}</h3>
+                    {e.period ? <span className="label shrink-0">{e.period}</span> : null}
+                  </div>
+                  <p className="mt-2 flex items-baseline justify-between gap-4 text-sm text-muted">
+                    <span>{e.detail}</span>
+                    <span className="shrink-0 font-serif text-base text-accent">{e.result}</span>
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
 
-            <div className="card p-6">
-              <h3 className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
-                <Award size={14} aria-hidden="true" />
-                Certification
-              </h3>
-              <p className="mt-5 text-sm font-semibold">{certification.name}</p>
-              <p className="mt-1 text-sm text-muted">{certification.issuer}</p>
+          <Reveal delay={0.16}>
+            <p className="mt-12 label-accent">Certification</p>
+            <div className="mt-6 border-t border-line pt-5">
+              <h3 className="font-serif text-lg leading-snug">{certification.name}</h3>
+              <p className="mt-2 text-sm text-muted">{certification.issuer}</p>
               <div className="mt-4 flex flex-wrap gap-2">
-                <span className="chip">{certification.duration}</span>
-                <span className="chip-accent">{certification.status}</span>
+                <span className="tag">{certification.duration}</span>
+                <span className="tag-accent">{certification.status}</span>
               </div>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
     </Section>
   )

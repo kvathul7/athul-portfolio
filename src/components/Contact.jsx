@@ -28,49 +28,53 @@ function CopyButton({ value, label }) {
     <button
       type="button"
       onClick={copy}
-      className="icon-link !h-9 !w-9 shrink-0"
+      className="relative z-10 inline-flex items-center gap-2 text-[10px] uppercase tracking-label text-faint transition-colors duration-300 hover:text-accent"
       aria-label={copied ? `${label} copied` : `Copy ${label}`}
     >
       {copied ? (
-        <Check size={15} aria-hidden="true" className="text-emerald-500" />
+        <>
+          <Check size={13} aria-hidden="true" className="text-accent" />
+          <span className="hidden sm:inline">Copied</span>
+        </>
       ) : (
-        <Copy size={15} aria-hidden="true" />
+        <>
+          <Copy size={13} aria-hidden="true" />
+          <span className="hidden sm:inline">Copy</span>
+        </>
       )}
     </button>
   )
 }
 
-function ContactCard({ icon: Icon, label, value, href, external, copyable, delay }) {
+function ContactRow({ icon: Icon, label, value, href, external, copyable, delay }) {
   return (
-    <Reveal delay={delay} className="h-full">
-      <div className="card card-hover group relative flex h-full items-center gap-4 p-5 sm:p-6">
-        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-line bg-elevated text-accent">
-          <Icon size={18} aria-hidden="true" />
-        </span>
+    <Reveal delay={delay}>
+      <div className="group relative flex items-center gap-5 border-b border-line py-6 sm:py-7">
+        <Icon
+          size={16}
+          aria-hidden="true"
+          className="shrink-0 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
+        />
 
-        <span className="min-w-0 flex-1">
-          <span className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
-            {label}
-          </span>
+        <div className="min-w-0 flex-1">
+          <p className="label">{label}</p>
           <a
             href={href}
             target={external ? '_blank' : undefined}
             rel={external ? 'noreferrer' : undefined}
-            className="mt-1 block truncate text-sm font-semibold text-ink transition group-hover:text-accent after:absolute after:inset-0 after:content-['']"
+            className="mt-1.5 block truncate font-serif text-lg transition-colors duration-300 group-hover:text-accent sm:text-xl after:absolute after:inset-0 after:content-['']"
           >
             {value}
           </a>
-        </span>
+        </div>
 
         {copyable ? (
-          <span className="relative z-10">
-            <CopyButton value={value} label={label} />
-          </span>
+          <CopyButton value={value} label={label} />
         ) : (
           <ArrowUpRight
             size={16}
             aria-hidden="true"
-            className="shrink-0 text-faint transition group-hover:text-accent"
+            className="shrink-0 text-faint transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-accent"
           />
         )}
       </div>
@@ -82,43 +86,64 @@ export default function Contact() {
   return (
     <Section
       id="contact"
-      eyebrow="Contact"
-      title="Let's talk"
+      titleTop="Let's"
+      titleBottom="Talk"
       lede="I'm looking for a Software Engineer or Backend Developer role. The quickest way to reach me is email."
     >
-      <div className="grid gap-4 sm:grid-cols-2">
-        <ContactCard
-          icon={Mail}
-          label="Email"
-          value={profile.email}
-          href={`mailto:${profile.email}`}
-          copyable
-          delay={0}
-        />
-        <ContactCard
-          icon={Phone}
-          label="Phone"
-          value={profile.phone}
-          href={`tel:${profile.phone.replace(/\s/g, '')}`}
-          copyable
-          delay={0.05}
-        />
-        <ContactCard
-          icon={Github}
-          label="GitHub"
-          value={profile.githubHandle}
-          href={profile.github}
-          external
-          delay={0.1}
-        />
-        <ContactCard
-          icon={Linkedin}
-          label="LinkedIn"
-          value={profile.linkedinHandle}
-          href={profile.linkedin}
-          external
-          delay={0.15}
-        />
+      <div className="grid grid-cols-1 gap-y-12 lg:grid-cols-12 lg:gap-x-14">
+        {/* Oversized call to action, echoing the hero's wordmark. */}
+        <Reveal className="lg:col-span-5">
+          <div className="lg:sticky lg:top-28">
+            <p
+              className="leading-[0.86] text-ink"
+              style={{ fontFamily: 'Anton, Impact, sans-serif', fontSize: 'clamp(3rem,8vw,5rem)' }}
+            >
+              GET IN
+              <br />
+              <span className="text-accent">TOUCH</span>
+            </p>
+            <p className="mt-7 max-w-prose text-[15px] leading-relaxed text-muted">
+              Based in {profile.location}. Open to on-site, hybrid, and remote roles.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="lg:col-span-7">
+          <div className="border-t border-line">
+            <ContactRow
+              icon={Mail}
+              label="Email"
+              value={profile.email}
+              href={`mailto:${profile.email}`}
+              copyable
+              delay={0}
+            />
+            <ContactRow
+              icon={Phone}
+              label="Phone"
+              value={profile.phone}
+              href={`tel:${profile.phone.replace(/\s/g, '')}`}
+              copyable
+              delay={0.06}
+            />
+            <ContactRow
+              icon={Github}
+              label="GitHub"
+              value={profile.githubHandle}
+              href={profile.github}
+              external
+              delay={0.12}
+            />
+            <ContactRow
+              icon={Linkedin}
+              label="LinkedIn"
+              value={profile.linkedinHandle}
+              href={profile.linkedin}
+              external
+              delay={0.18}
+            />
+          </div>
+        </div>
       </div>
     </Section>
   )

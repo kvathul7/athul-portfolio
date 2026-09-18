@@ -206,3 +206,33 @@ export const certification = {
   duration: '6 Months',
   status: 'Completed',
 }
+
+// ---------------------------------------------------------------------------
+// Editorial presentation metadata. Layout/labelling only — no new claims.
+// ---------------------------------------------------------------------------
+
+export const editorial = {
+  // The oversized condensed word that anchors the hero.
+  heroWord: 'PORTFOLIO',
+  // Vertical rail labels running up the hero's outer margins.
+  railsLeft: ['Spring Boot', 'Java 17'],
+  railsRight: ['MySQL', 'React.js'],
+  // Rotating stamp in the hero, repeated around the circle.
+  badge: 'Open to software engineer roles · Bangalore, India · ',
+  badgeLines: ['Open', 'for', 'work'],
+  // Hero metadata strip, drawn from facts already on the page.
+  meta: [
+    { k: 'Based in', v: 'Bangalore, India' },
+    { k: 'Focus', v: 'Backend / Full-Stack' },
+    { k: 'Degree', v: 'B.E. CSE — VTU' },
+    { k: 'Status', v: 'Open to roles' },
+  ],
+  // Short display labels for the project covers, keyed by project.short.
+  projectMeta: {
+    HRMS: { subtitle: 'Enterprise HR Platform', cover: 'HRMS' },
+    NIDS: { subtitle: 'Network Security Tool', cover: 'NIDS' },
+  },
+  // Pull quote for the skills spread — taken verbatim from the About copy.
+  pullQuote:
+    'I build the parts of an application most people never see — the API layer, the schema underneath it, and the access rules that decide who is allowed to touch what.',
+}

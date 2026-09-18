@@ -1,92 +1,227 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowDown, FileText, Github, Linkedin, Mail, MapPin } from 'lucide-react'
-import { profile } from '../data/content'
+import { ArrowDownRight, ArrowRight, Asterisk } from 'lucide-react'
+import { editorial, profile } from '../data/content'
+import { MaskReveal } from './Reveal'
 
-const rise = {
-  hidden: { opacity: 0, y: 18 },
-  show: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: 0.06 * i, ease: [0.22, 1, 0.36, 1] },
-  }),
+const EASE = [0.22, 1, 0.36, 1]
+
+/** Slow-rotating stamp, standing in for the reference's circular badge. */
+function Stamp() {
+  // One pass around the circle — repeating it overruns the path and the glyphs
+  // pile up on top of each other at the start point.
+  const text = editorial.badge.toUpperCase()
+
+  return (
+    <div className="relative h-[98px] w-[98px] sm:h-[120px] sm:w-[120px]">
+      <svg
+        viewBox="0 0 100 100"
+        className="h-full w-full animate-spin-slow text-muted"
+        aria-hidden="true"
+      >
+        <defs>
+          <path
+            id="stamp-path"
+            fill="none"
+            d="M 50,50 m -39,0 a 39,39 0 1,1 78,0 a 39,39 0 1,1 -78,0"
+          />
+        </defs>
+        <text fill="currentColor" fontSize="5.1" letterSpacing="0.62" className="font-sans">
+          <textPath href="#stamp-path" startOffset="0">
+            {text}
+          </textPath>
+        </text>
+      </svg>
+
+      <span className="pointer-events-none absolute inset-0 grid place-items-center">
+        <span className="text-center font-serif text-[13px] leading-[1.15] text-accent sm:text-[15px]">
+          {editorial.badgeLines.map((l) => (
+            <span key={l} className="block">
+              {l}
+            </span>
+          ))}
+        </span>
+      </span>
+    </div>
+  )
+}
+
+/** Vertical rail label running up the outer margin. */
+function Rail({ children, side }) {
+  return (
+    <span
+      className={`absolute top-0 hidden items-center gap-4 xl:flex ${
+        side === 'left' ? 'left-0' : 'right-0'
+      }`}
+    >
+      <span
+        className="vertical-rl label whitespace-nowrap"
+        style={{ transform: 'rotate(180deg)' }}
+      >
+        {children}
+      </span>
+    </span>
+  )
 }
 
 export default function Hero() {
   const reduced = useReducedMotion()
-  const anim = (i) =>
+
+  const fade = (delay) =>
     reduced
       ? {}
-      : { variants: rise, initial: 'hidden', animate: 'show', custom: i }
+      : {
+          initial: { opacity: 0, y: 16 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.7, delay, ease: EASE },
+        }
 
   return (
-    <section id="top" className="relative overflow-hidden pt-32 sm:pt-40 lg:pt-44">
-      {/* Background: dot grid + two slow-drifting accent blooms. */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 grid-bg" />
-        <div className="absolute -top-32 left-1/4 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-accent/20 blur-[120px] animate-drift" />
-        <div
-          className="absolute -top-20 right-0 h-[22rem] w-[22rem] rounded-full bg-accent/10 blur-[110px] animate-drift"
-          style={{ animationDelay: '-8s' }}
-        />
+    <section id="top" className="relative pt-[72px]">
+      <div className="shell">
+        {/* Top metadata strip — mirrors the reference's thin header rule. */}
+        <motion.div
+          {...fade(0.05)}
+          className="flex items-center justify-between gap-4 border-b border-line py-5"
+        >
+          <span className="flex items-center gap-3">
+            <Asterisk size={13} aria-hidden="true" className="text-accent" />
+            <span className="label">Backend Developer</span>
+          </span>
+          <a href="#contact" className="group link-arrow">
+            <span className="hidden sm:inline">Open to Software Engineer roles</span>
+            <span className="sm:hidden">Open to roles</span>
+            <ArrowRight
+              size={13}
+              aria-hidden="true"
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </a>
+        </motion.div>
+
+        {/* Oversized editorial wordmark. SVG so it spans the column exactly at
+            every viewport width without ever overflowing. */}
+        <div className="relative pt-6 sm:pt-8">
+          <MaskReveal immediate>
+            <svg
+              viewBox="0 0 100 23"
+              className="block w-full text-ink"
+              role="presentation"
+              aria-hidden="true"
+            >
+              <text
+                x="50"
+                y="19.2"
+                textAnchor="middle"
+                textLength="100"
+                lengthAdjust="spacing"
+                fontSize="23"
+                fill="currentColor"
+                style={{ fontFamily: 'Anton, Impact, sans-serif' }}
+              >
+                {editorial.heroWord}
+              </text>
+            </svg>
+          </MaskReveal>
+        </div>
+
+        {/* Introduction + visual, asymmetric two-column spread. */}
+        <div className="relative grid grid-cols-1 items-start gap-y-12 pb-16 pt-10 lg:grid-cols-12 lg:gap-x-12 lg:pb-24 lg:pt-12">
+          <Rail side="left">Java 17 — Spring Boot</Rail>
+          <Rail side="right">MySQL — React.js</Rail>
+
+          <div className="lg:col-span-7 xl:pl-14">
+            <motion.p {...fade(0.15)} className="label">
+              Hello, I&rsquo;m
+            </motion.p>
+
+            <h1 className="mt-4 font-serif text-[clamp(2.75rem,9vw,5.5rem)] font-normal uppercase leading-[0.95] tracking-tight">
+              <MaskReveal immediate delay={0.2}>{profile.name}</MaskReveal>
+            </h1>
+
+            <motion.p
+              {...fade(0.34)}
+              className="mt-5 max-w-prose font-sans text-[13px] uppercase tracking-wider2 text-accent sm:text-sm"
+            >
+              {profile.title}
+            </motion.p>
+
+            <motion.p
+              {...fade(0.42)}
+              className="mt-7 max-w-prose text-[15px] leading-relaxed text-muted sm:text-base"
+            >
+              {profile.positioning}
+            </motion.p>
+
+            <motion.p
+              {...fade(0.5)}
+              className="mt-8 font-serif text-3xl italic text-ink/90 sm:text-4xl"
+              aria-hidden="true"
+            >
+              {profile.name}
+            </motion.p>
+
+            <motion.div {...fade(0.58)} className="mt-9 flex flex-wrap items-center gap-4">
+              <a href="#projects" className="btn-solid">
+                View Projects
+                <ArrowDownRight size={14} aria-hidden="true" />
+              </a>
+              <a
+                href={profile.resume}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-outline"
+              >
+                Download Resume
+                <ArrowRight size={14} aria-hidden="true" />
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Visual area: terracotta disc + monogram, with the stamp overlapping. */}
+          <motion.div
+            {...fade(0.3)}
+            className="relative mx-auto w-full max-w-[420px] lg:col-span-5 lg:mx-0 lg:max-w-none xl:pr-14"
+          >
+            <div className="relative aspect-square w-full">
+              <div className="absolute inset-[11%] rounded-full bg-accent" aria-hidden="true" />
+              <div
+                className="absolute inset-0 rounded-full border border-line"
+                aria-hidden="true"
+              />
+              <span className="absolute inset-0 grid place-items-center">
+                <span className="font-serif text-[clamp(4rem,14vw,7.5rem)] leading-none text-bg">
+                  {profile.initials}
+                </span>
+              </span>
+            </div>
+
+            {/* Sits in the empty corner outside the disc so the rotating text
+                never runs across the terracotta. */}
+            <div className="absolute -bottom-4 -left-3 z-10 sm:-bottom-6 sm:-left-5 lg:-bottom-8 lg:-left-9">
+              <Stamp />
+            </div>
+          </motion.div>
+        </div>
       </div>
 
-      <div className="shell pb-20 sm:pb-28">
-        <motion.p
-          {...anim(0)}
-          className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-muted"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-          </span>
-          Open to Software Engineer / Backend Developer roles
-        </motion.p>
-
-        <motion.h1
-          {...anim(1)}
-          className="mt-6 font-display font-semibold tracking-tight"
-          style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', lineHeight: 1.05 }}
-        >
-          {profile.name}
-        </motion.h1>
-
-        <motion.p {...anim(2)} className="mt-4 text-lg font-medium text-accent sm:text-xl">
-          {profile.title}
-        </motion.p>
-
-        <motion.p {...anim(3)} className="mt-6 max-w-prose text-base leading-relaxed text-muted sm:text-lg">
-          {profile.positioning}
-        </motion.p>
-
-        <motion.p {...anim(4)} className="mt-6 inline-flex items-center gap-2 text-sm text-faint">
-          <MapPin size={15} aria-hidden="true" />
-          {profile.location}
-        </motion.p>
-
-        <motion.div {...anim(5)} className="mt-9 flex flex-wrap items-center gap-3">
-          <a href="#projects" className="btn-primary">
-            View Projects
-            <ArrowDown size={16} aria-hidden="true" />
-          </a>
-          <a href={profile.resume} target="_blank" rel="noreferrer" className="btn-ghost">
-            <FileText size={16} aria-hidden="true" />
-            Download Resume
-          </a>
-
-          <span aria-hidden="true" className="mx-1 hidden h-8 w-px bg-line sm:block" />
-
-          <div className="flex items-center gap-2">
-            <a href={profile.github} target="_blank" rel="noreferrer" className="icon-link" aria-label="GitHub profile">
-              <Github size={18} aria-hidden="true" />
-            </a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="icon-link" aria-label="LinkedIn profile">
-              <Linkedin size={18} aria-hidden="true" />
-            </a>
-            <a href={`mailto:${profile.email}`} className="icon-link" aria-label={`Email ${profile.email}`}>
-              <Mail size={18} aria-hidden="true" />
-            </a>
-          </div>
-        </motion.div>
+      {/* Hero metadata strip. */}
+      <div className="shell">
+        <div className="grid grid-cols-2 border-y border-line lg:grid-cols-4">
+          {editorial.meta.map((m, i) => (
+            <motion.div
+              {...fade(0.65 + i * 0.06)}
+              key={m.k}
+              className={`px-1 py-6 sm:py-7 ${
+                i % 2 === 1 ? 'border-l border-line pl-5' : ''
+              } ${i > 1 ? 'border-t border-line lg:border-t-0' : ''} ${
+                i > 0 ? 'lg:border-l lg:pl-5' : ''
+              }`}
+            >
+              <p className="label">{m.k}</p>
+              <p className="mt-2 font-serif text-base sm:text-lg">{m.v}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )
