@@ -1,6 +1,7 @@
 import { ArrowRight, ArrowUpRight, Github } from 'lucide-react'
 import Section from './Section'
 import Reveal from './Reveal'
+import Logo from './Logo'
 import { editorial, profile, projects } from '../data/content'
 
 /**
@@ -18,16 +19,23 @@ function Cover({ p, meta, dark }) {
         dark ? 'border-ink bg-ink' : 'border-line bg-elevated'
       }`}
     >
-      {/* Head */}
-      <div className="flex items-start justify-between gap-4">
-        <span
-          className={`text-[10px] uppercase tracking-label ${
-            dark ? 'text-bg/55' : 'text-faint'
-          }`}
-        >
-          {meta.subtitle}
+      {/* Head — logo sits in a fixed-height slot so it aligns with the label. */}
+      <div className="flex items-center justify-between gap-4">
+        <span className="flex items-center gap-3.5">
+          {p.logo && (
+            <span className="flex h-9 items-center">
+              <Logo src={p.logo} alt={`${p.short} logo`} size="md" />
+            </span>
+          )}
+          <span
+            className={`text-[10px] uppercase tracking-label ${
+              dark ? 'text-bg/55' : 'text-faint'
+            }`}
+          >
+            {meta.subtitle}
+          </span>
         </span>
-        <span className={`text-[10px] uppercase tracking-label ${dark ? 'text-accent' : 'text-accent'}`}>
+        <span className="shrink-0 text-[10px] uppercase tracking-label text-accent">
           {p.year}
         </span>
       </div>

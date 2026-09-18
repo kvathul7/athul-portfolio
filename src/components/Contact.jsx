@@ -88,7 +88,7 @@ export default function Contact() {
       id="contact"
       titleTop="Let's"
       titleBottom="Talk"
-      lede="I'm looking for a Software Engineer or Backend Developer role. The quickest way to reach me is email."
+      lede="I'm looking for a Java backend or full-stack developer role. The quickest way to reach me is email."
     >
       <div className="grid grid-cols-1 gap-y-12 lg:grid-cols-12 lg:gap-x-14">
         {/* Oversized call to action, echoing the hero's wordmark. */}

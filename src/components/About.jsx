@@ -1,5 +1,6 @@
 import Section from './Section'
 import Reveal from './Reveal'
+import Logo from './Logo'
 import { certification, education, profile } from '../data/content'
 
 export default function About() {
@@ -49,6 +50,15 @@ export default function About() {
           <Reveal delay={0.16}>
             <p className="mt-12 label-accent">Certification</p>
             <div className="mt-6 border-t border-line pt-5">
+              {certification.logo && (
+                <div className="mb-4 flex h-14 items-center">
+                  <Logo
+                    src={certification.logo}
+                    alt={`${certification.issuer} logo`}
+                    size={certification.logoSize ?? 'lg'}
+                  />
+                </div>
+              )}
               <h3 className="font-serif text-lg leading-snug">{certification.name}</h3>
               <p className="mt-2 text-sm text-muted">{certification.issuer}</p>
               <div className="mt-4 flex flex-wrap gap-2">

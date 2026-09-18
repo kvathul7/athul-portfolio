@@ -85,10 +85,10 @@ export default function Hero() {
         >
           <span className="flex items-center gap-3">
             <Asterisk size={13} aria-hidden="true" className="text-accent" />
-            <span className="label">Backend Developer</span>
+            <span className="label">Java Full Stack Developer</span>
           </span>
           <a href="#contact" className="group link-arrow">
-            <span className="hidden sm:inline">Open to Software Engineer roles</span>
+            <span className="hidden sm:inline">Open to Java developer roles</span>
             <span className="sm:hidden">Open to roles</span>
             <ArrowRight
               size={13}

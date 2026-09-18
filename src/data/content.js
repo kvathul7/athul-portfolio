@@ -1,23 +1,24 @@
 // All site copy lives here. Edit this file to update the portfolio.
+// Content follows the resume: "ATHUL K V — Java Full Stack Developer".
 
 export const profile = {
   name: 'Athul K V',
   initials: 'AK',
-  title: 'Software Engineer · Backend & Full-Stack Developer',
+  title: 'Java Full Stack Developer · Spring Boot, React, MySQL',
   location: 'Bangalore, India',
   email: 'kvathul27@gmail.com',
-  phone: '+91 8086257339',
+  phone: '+91 80862 57339',
   github: 'https://github.com/kvathul7',
   githubHandle: 'kvathul7',
   linkedin: 'https://linkedin.com/in/athul-kv-16a3ab256',
   linkedinHandle: 'athul-kv-16a3ab256',
   resume: '/Athul_KV_Resume.pdf',
   positioning:
-    'Computer Science Engineering graduate building production-style backend systems with Java, Spring Boot, React, and MySQL — REST APIs, relational schema design, and secure role-based applications.',
+    'Computer Science graduate (B.E., 2026) with hands-on experience in Java, Spring Boot, REST APIs, Hibernate/JPA, MySQL and React.js. Built a complete HR management system with JWT login and role-based access.',
   about: [
     'I build the parts of an application most people never see — the API layer, the schema underneath it, and the access rules that decide who is allowed to touch what.',
-    'Most of what I know came from building an enterprise HRMS end to end: twelve modules, four user roles, JWT authentication, and a normalized MySQL schema behind a React frontend. Working through that gave me a real feel for how a backend holds together once it stops being a tutorial.',
-    'I am currently a software development intern at ORGGU, working across web, mobile, and cloud under mentor guidance. I care about clean code, readable commits, and shipping things that actually work.',
+    'Most of what I know came from building an HR management system end to end: twelve modules, four user roles, JWT login, and a normalized MySQL schema behind a React frontend. Working through that gave me a real feel for how a backend holds together once it stops being a tutorial.',
+    'I am currently a software development intern at ORGGU in Bangalore, working on real-world web and mobile app projects under mentor guidance along with cloud development basics. I am looking for a Java backend or full-stack developer role.',
   ],
 }
 
@@ -35,26 +36,33 @@ export const experience = [
     role: 'Software Development Intern',
     location: 'Bangalore',
     period: 'Ongoing',
+    kind: 'Experience',
     current: true,
-    stack: ['Web Development', 'Mobile', 'Cloud', 'Fork', 'Bitbucket', 'CloudCode'],
+    logo: '/logos/orggu.png',
+    logoSize: 'lg',
+    site: 'https://www.orggu.com/',
+    siteLabel: 'orggu.com',
+    stack: ['Web Development', 'Mobile Apps', 'Cloud Basics', 'Bitbucket', 'Fork'],
     bullets: [
-      'Engaged in a mentor-guided, learning-focused internship spanning web development, mobile app development, and cloud technologies.',
-      'Working on real-world projects under mentor guidance, applying AI tools such as ChatGPT and Claude to support learning and development.',
-      'Using Fork (Git GUI client) and Bitbucket for source control and repository management, and CloudCode for cloud-based development workflows.',
+      'Working on real-world web and mobile app projects under mentor guidance, along with cloud development basics.',
+      'Use Bitbucket and Fork for version control on team repositories.',
     ],
   },
   {
     company: 'Pentagon Space',
-    role: 'Full-Stack Web Development Training (Course-Based Internship)',
+    role: 'Java Full Stack Development',
     location: 'Bengaluru',
     period: '6 Months',
+    kind: 'Training & Certification',
     current: false,
+    logo: '/logos/pentagon-space.png',
+    logoSize: 'xl',
+    site: 'https://pentagonspace.in/',
+    siteLabel: 'pentagonspace.in',
     stack: ['HTML', 'CSS', 'JavaScript', 'Java', 'MySQL'],
     bullets: [
-      'Completed a structured, course-based training internship covering full-stack web development, building both frontend interfaces and backend logic.',
-      'Integrated MySQL databases into web applications, designing schemas and queries for reliable data persistence.',
-      'Practiced debugging, code review, and backend development workflows through hands-on exercises.',
-      'Collaborated using a Git/GitHub feature-branch workflow, including pull requests and peer code review.',
+      'Hands-on course covering HTML, CSS, JavaScript, Java and MySQL; built small full-stack apps as assignments.',
+      'Used Git feature branches, pull requests and peer code review on team assignments.',
     ],
   },
 ]
@@ -62,32 +70,31 @@ export const experience = [
 export const projects = [
   {
     featured: true,
-    name: 'Enterprise Human Resource Management System',
+    name: 'HR Management System (HRMS)',
     short: 'HRMS',
     year: 'June 2026',
-    role: 'Full Stack Developer',
+    role: 'Java Full Stack',
     repo: 'https://github.com/kvathul7/hrms',
     repoLabel: 'github.com/kvathul7/hrms',
+    logo: '/logos/axon-hrms.png',
     summary:
-      'An enterprise-grade HR platform covering the full employee lifecycle — twelve modules behind a single role-aware React interface, served by a Spring Boot REST API over a normalized MySQL schema.',
+      'A full-stack HR platform covering the employee lifecycle — twelve modules behind a single role-aware React interface, served by a Spring Boot REST API over a normalized MySQL schema.',
     stack: [
       'Java 17',
       'Spring Boot',
       'Spring Security',
       'JWT',
+      'Hibernate/JPA',
+      'MySQL',
       'React.js (Vite)',
       'Material UI',
-      'MySQL',
-      'Hibernate/JPA',
-      'Maven',
-      'REST APIs',
       'Axios',
       'Chart.js',
     ],
     stats: [
       { value: '12', label: 'Modules' },
       { value: '4', label: 'User roles' },
-      { value: '15+', label: 'REST endpoints' },
+      { value: '15+', label: 'REST APIs' },
     ],
     modules: [
       'Dashboard',
@@ -110,91 +117,78 @@ export const projects = [
       { name: 'Employee', scope: 'Own records only' },
     ],
     bullets: [
-      'Developed an enterprise-grade HRMS platform with 12 modules using Java Spring Boot, React.js, and MySQL.',
-      'Implemented JWT-based authentication and role-based access control (RBAC) for 4 user roles using Spring Security.',
-      'Designed and consumed 15+ RESTful API endpoints across modules, integrating them into a React frontend via Axios.',
-      'Designed and managed a normalized MySQL relational schema with Hibernate/JPA for efficient, scalable persistence.',
-      'Created responsive analytics dashboards with real-time employee statistics using Material UI and Chart.js.',
-      'Implemented CRUD operations, employee search & filtering, form validation, and secure role-based data access across all modules.',
-      'Maintained source control on GitHub with structured commits, enabling traceable, incremental feature development.',
+      'Full-stack HR app with 12 modules — employees, attendance, leave, payroll, recruitment, performance, reports and more.',
+      'JWT login and role-based access for Admin, HR, Manager and Employee roles using Spring Security.',
+      'Built 15+ REST APIs in Spring Boot and connected them to the React frontend with Axios.',
+      'Designed a normalized MySQL schema mapped with Hibernate/JPA; CRUD, search, filters and form validation across all modules.',
+      'Dashboard with live employee stats using Material UI and Chart.js.',
     ],
   },
   {
     featured: false,
-    name: 'Network Intrusion Detection System',
+    name: 'Network Intrusion Detection System (NIDS)',
     short: 'NIDS',
     year: '2025',
-    role: 'Developer',
+    role: 'Python, group project',
     repo: 'https://github.com/kvathul7/NIDS',
     repoLabel: 'github.com/kvathul7/NIDS',
+    logo: null,
     summary:
-      'An end-to-end network security application that analyses traffic in real time and surfaces what it finds on a live visualization dashboard.',
-    stack: ['Python', 'Data Visualization', 'Real-Time Analytics'],
+      'A network security tool that watches traffic in real time and flags suspicious activity on a live dashboard.',
+    stack: ['Python'],
     stats: [],
     modules: [],
     roles: [],
     bullets: [
-      'Designed and implemented an end-to-end network security application with real-time traffic analysis and a live visualization dashboard.',
-      'Delivered a fully functional solution from requirements gathering through deployment, covering the complete software development lifecycle (SDLC).',
+      'Watches network traffic in real time and flags suspicious activity on a live dashboard.',
+      'Took it from requirements to a working deployment as a complete project.',
     ],
   },
 ]
 
 export const skills = [
-  { group: 'Languages', items: ['Java'] },
+  {
+    group: 'Languages',
+    items: [
+      'Java (Core Java, OOP, Collections, Exception Handling)',
+      'JavaScript',
+      'SQL',
+      'Python (basics)',
+      'HTML',
+      'CSS',
+    ],
+  },
   {
     group: 'Backend',
     items: ['Spring Boot', 'Spring Security', 'JWT', 'REST APIs', 'Hibernate/JPA', 'Maven'],
   },
   {
     group: 'Frontend',
-    items: ['HTML', 'CSS', 'JavaScript', 'React.js (Vite)', 'Material UI', 'Axios', 'Chart.js'],
+    items: ['React.js (Vite)', 'Material UI', 'Axios', 'Chart.js'],
   },
-  { group: 'Databases', items: ['MySQL'] },
+  { group: 'Database', items: ['MySQL'] },
   {
     group: 'Tools',
-    items: [
-      'Git',
-      'GitHub (feature-branch, pull requests)',
-      'Fork',
-      'Bitbucket',
-      'CloudCode',
-      'VS Code',
-      'Eclipse',
-    ],
-  },
-  {
-    group: 'AI Platforms',
-    items: ['ChatGPT', 'Claude', 'Gemini', 'GitHub Copilot', 'Cursor', 'Bolt.new'],
-  },
-  {
-    group: 'Strengths',
-    items: [
-      'Prompt engineering',
-      'AI-assisted development',
-      'Communication',
-      'Leadership',
-      'Time management',
-    ],
+    items: ['Git', 'GitHub', 'Bitbucket', 'Fork', 'VS Code', 'Eclipse'],
   },
 ]
 
 export const education = [
   {
-    school: 'Shree Devi Institute of Technology, VTU',
-    detail: 'B.E. Computer Science Engineering',
+    school: 'Shree Devi Institute of Technology (VTU)',
+    detail: 'B.E. in Computer Science Engineering',
     result: '70%',
-    period: 'Expected 2026',
+    period: '2026',
   },
   {
     school: 'CKNS GHSS Pilicode',
-    detail: 'Higher Secondary (Class XII)',
+    detail: 'Class XII',
     result: '85%',
     period: '',
   },
   {
     school: 'CKNS GHSS Pilicode',
-    detail: 'SSLC (Class X)',
+    detail: 'Class X',
     result: '96%',
     period: '',
   },
@@ -202,9 +196,11 @@ export const education = [
 
 export const certification = {
   name: 'Java Full Stack Development',
-  issuer: 'Pentagon Space, Bangalore',
+  issuer: 'Pentagon Space, Bengaluru',
   duration: '6 Months',
   status: 'Completed',
+  logo: '/logos/pentagon-space.png',
+  logoSize: 'xl',
 }
 
 // ---------------------------------------------------------------------------
@@ -218,18 +214,18 @@ export const editorial = {
   railsLeft: ['Spring Boot', 'Java 17'],
   railsRight: ['MySQL', 'React.js'],
   // Rotating stamp in the hero, repeated around the circle.
-  badge: 'Open to software engineer roles · Bangalore, India · ',
+  badge: 'Open to Java developer roles · Bangalore, India · ',
   badgeLines: ['Open', 'for', 'work'],
   // Hero metadata strip, drawn from facts already on the page.
   meta: [
     { k: 'Based in', v: 'Bangalore, India' },
-    { k: 'Focus', v: 'Backend / Full-Stack' },
+    { k: 'Focus', v: 'Java Full Stack' },
     { k: 'Degree', v: 'B.E. CSE — VTU' },
     { k: 'Status', v: 'Open to roles' },
   ],
   // Short display labels for the project covers, keyed by project.short.
   projectMeta: {
-    HRMS: { subtitle: 'Enterprise HR Platform', cover: 'HRMS' },
+    HRMS: { subtitle: 'HR Management Platform', cover: 'HRMS' },
     NIDS: { subtitle: 'Network Security Tool', cover: 'NIDS' },
   },
   // Pull quote for the skills spread — taken verbatim from the About copy.
