@@ -39,6 +39,13 @@ export default function Skills() {
                       </span>
                       <span className="label-ink">{group.group}</span>
                     </p>
+                    {/* Level note — keeps self-taught extras honestly labelled
+                        rather than sitting alongside the core stack unmarked. */}
+                    {group.note && (
+                      <p className="mt-2 pl-[26px] font-serif text-[13px] italic text-faint">
+                        {group.note}
+                      </p>
+                    )}
                   </div>
                   <ul className="flex flex-wrap gap-2 sm:col-span-9">
                     {group.items.map((item) => (

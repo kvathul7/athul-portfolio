@@ -206,7 +206,7 @@ export default function Hero() {
 
       {/* Hero metadata strip. */}
       <div className="shell">
-        <div className="grid grid-cols-2 border-y border-line lg:grid-cols-4">
+        <div className="grid grid-cols-2 border-t border-line lg:grid-cols-4">
           {editorial.meta.map((m, i) => (
             <motion.div
               {...fade(0.65 + i * 0.06)}
@@ -222,6 +222,22 @@ export default function Hero() {
             </motion.div>
           ))}
         </div>
+
+        {/* Roles band — the titles Athul is open to, scannable at a glance. */}
+        <motion.div
+          {...fade(0.9)}
+          className="flex flex-col gap-4 border-y border-line py-6 sm:flex-row sm:items-center sm:gap-10"
+        >
+          <p className="label shrink-0">Open to</p>
+          <ul className="flex flex-wrap items-center gap-x-7 gap-y-2.5">
+            {profile.roles.map((r) => (
+              <li key={r} className="flex items-center gap-2.5">
+                <span aria-hidden="true" className="h-1 w-1 rounded-full bg-accent" />
+                <span className="text-[13px] text-ink sm:text-sm">{r}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
       </div>
     </section>
   )

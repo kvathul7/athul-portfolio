@@ -13,6 +13,15 @@ export const profile = {
   linkedin: 'https://linkedin.com/in/athul-kv-16a3ab256',
   linkedinHandle: 'athul-kv-16a3ab256',
   resume: '/Athul_KV_Resume.pdf',
+  // Roles Athul is open to — shown as an "Open to" band under the hero.
+  roles: [
+    'Java Developer',
+    'Full Stack Developer',
+    'Backend Developer',
+    'Frontend Developer',
+    'React.js Developer',
+    'Software Engineer',
+  ],
   positioning:
     'Computer Science graduate (B.E., 2026) with hands-on experience in Java, Spring Boot, REST APIs, Hibernate/JPA, MySQL and React.js. Built a complete HR management system with JWT login and role-based access.',
   about: [
@@ -170,6 +179,17 @@ export const skills = [
   {
     group: 'Tools',
     items: ['Git', 'GitHub', 'Bitbucket', 'Fork', 'VS Code', 'Eclipse'],
+  },
+  {
+    group: 'Creative & Marketing',
+    note: 'Beginner',
+    items: [
+      'Social media handling',
+      'Content creation',
+      'AI content creation',
+      'Photo & video editing',
+      'Digital marketing',
+    ],
   },
 ]
 
