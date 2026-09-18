@@ -90,8 +90,8 @@ export default function Hero() {
             <span className="label">Java Full Stack Developer</span>
           </span>
           <a href="#contact" className="group link-arrow">
-            <span className="hidden sm:inline">Open to Java developer roles</span>
-            <span className="sm:hidden">Open to roles</span>
+            <span className="hidden sm:inline">Get in touch</span>
+            <span className="sm:hidden">Contact</span>
             <ArrowRight
               size={13}
               aria-hidden="true"

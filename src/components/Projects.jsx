@@ -14,10 +14,13 @@ function Cover({ p, meta, dark }) {
     <div
       /* Min-height rather than a fixed aspect ratio: the module list is taller
          than a 4:3 box on narrow screens, and a fixed ratio silently clipped
-         the last two modules. */
-      className={`relative flex min-h-[320px] w-full flex-col justify-between gap-8 border p-6 transition-colors duration-500 sm:min-h-[420px] sm:p-8 lg:min-h-[520px] lg:p-10 ${
-        dark ? 'border-ink bg-ink' : 'border-line bg-elevated'
-      }`}
+         the last two modules. The shorter floor is for projects with no module
+         list — at the taller one they were mostly empty panel. */
+      className={`relative flex w-full flex-col justify-between gap-8 border p-6 transition-colors duration-500 sm:p-8 lg:p-10 ${
+        p.modules.length > 0
+          ? 'min-h-[320px] sm:min-h-[420px] lg:min-h-[520px]'
+          : 'min-h-[260px] sm:min-h-[320px] lg:min-h-[380px]'
+      } ${dark ? 'border-ink bg-ink' : 'border-line bg-elevated'}`}
     >
       {/* Head — logo sits in a fixed-height slot so it aligns with the label.
           Below sm the label drops under the logo: inline beside it there is not

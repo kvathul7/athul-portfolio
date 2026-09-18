@@ -6,7 +6,7 @@
  * and letting width follow (object-contain, object-left) makes them share one
  * optical baseline and one left edge wherever they appear.
  */
-export default function Logo({ src, alt, size = 'md', className = '', invertOnDark = false }) {
+export default function Logo({ src, alt, size = 'md', className = '' }) {
   if (!src) return null
 
   // Icon-shaped marks (ORGGU, Axon) and wordmark lockups (Pentagon Space) need
@@ -32,9 +32,7 @@ export default function Logo({ src, alt, size = 'md', className = '', invertOnDa
       alt={alt}
       loading="lazy"
       decoding="async"
-      className={`${heights[size]} ${widths[size]} w-auto object-contain object-left ${
-        invertOnDark ? 'dark:brightness-0 dark:invert' : ''
-      } ${className}`}
+      className={`${heights[size]} ${widths[size]} w-auto object-contain object-left ${className}`}
     />
   )
 }

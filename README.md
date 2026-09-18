@@ -71,12 +71,18 @@ src/
 
 ## Notes
 
-- **Design language:** warm cream / charcoal / terracotta editorial palette. Anton for the
-  oversized wordmarks, Playfair Display for headings, Inter for body copy, JetBrains Mono
-  for small technical labels.
+- **Design language:** porcelain / ink / deep teal editorial palette — `#F7F7F5`
+  ground, `#14171A` text, `#0E7C6B` accent (`#2DB29B` in dark). Anton for the
+  oversized wordmarks, Playfair Display for headings, Inter for body copy,
+  JetBrains Mono for small technical labels.
 - **Light theme is the default**; the toggle persists to `localStorage` and is applied
-  before first paint (inline script in `index.html`) so there is no flash. A warm dark
+  before first paint (inline script in `index.html`) so there is no flash. A dark
   theme is available from the same toggle.
+- **Hero visual:** set `profile.showPhoto` to `true` in `src/data/content.js` to swap
+  the monogram for the portrait in `public/photo/`.
+- **Link preview:** `public/og.png` is generated from `tools/og-card.html` — serve the
+  site, open that file through the dev server and screenshot it at 1200x630. After
+  deploying, change the `og:image` tags in `index.html` to the absolute URL.
 - All motion respects `prefers-reduced-motion`.
 - There is no contact form — the site is fully static, so email/phone/profile links
   are used instead.

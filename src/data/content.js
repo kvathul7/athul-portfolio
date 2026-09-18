@@ -223,9 +223,6 @@ export const certification = {
 export const editorial = {
   // The oversized condensed word that anchors the hero.
   heroWord: 'PORTFOLIO',
-  // Vertical rail labels running up the hero's outer margins.
-  railsLeft: ['Spring Boot', 'Java 17'],
-  railsRight: ['MySQL', 'React.js'],
   // Rotating stamp in the hero, repeated around the circle.
   badge: 'Open to Java developer roles · Bangalore, India · ',
   badgeLines: ['Open', 'for', 'work'],
@@ -234,7 +231,7 @@ export const editorial = {
     { k: 'Based in', v: 'Bangalore, India' },
     { k: 'Focus', v: 'Java Full Stack' },
     { k: 'Degree', v: 'B.E. CSE — VTU' },
-    { k: 'Status', v: 'Open to roles' },
+    { k: 'Currently', v: 'Intern at ORGGU' },
   ],
   // Short display labels for the project covers, keyed by project.short.
   projectMeta: {

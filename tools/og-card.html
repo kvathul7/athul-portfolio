@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:wght@400;500&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      :root {
+        --bg: #f7f7f5;
+        --ink: #14171a;
+        --muted: #5a6169;
+        --faint: #8a9198;
+        --line: #e2e3e0;
+        --accent: #0e7c6b;
+      }
+      body {
+        width: 1200px; height: 630px;
+        background: var(--bg); color: var(--ink);
+        font-family: Inter, sans-serif;
+        display: flex; flex-direction: column;
+        padding: 56px 64px;
+      }
+      .label {
+        font-size: 15px; font-weight: 500; text-transform: uppercase;
+        letter-spacing: 0.2em; color: var(--faint);
+      }
+      .top { display: flex; justify-content: space-between; align-items: center;
+             border-bottom: 1px solid var(--line); padding-bottom: 22px; }
+      .top .accent { color: var(--accent); }
+      .mid { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+      .mid-text { display: flex; flex-direction: column; }
+      .disc {
+        width: 246px; height: 246px; flex: none; border-radius: 50%;
+        background: var(--accent); display: flex; align-items: center; justify-content: center;
+      }
+      .disc span {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 96px; color: var(--bg); line-height: 1;
+      }
+      h1 {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-weight: 400; font-size: 104px; line-height: 1;
+        letter-spacing: -0.015em; text-transform: uppercase;
+      }
+      .role {
+        margin-top: 22px; font-size: 19px; font-weight: 500;
+        text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent);
+      }
+      .blurb {
+        margin-top: 26px; font-size: 21px; line-height: 1.55;
+        color: var(--muted); max-width: 46ch;
+      }
+      .foot { display: flex; justify-content: space-between; align-items: center;
+              border-top: 1px solid var(--line); padding-top: 22px; }
+      .stack { display: flex; gap: 10px; }
+      .chip { border: 1px solid var(--line); padding: 7px 13px; font-size: 14px; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div class="top">
+      <span class="label"><span class="accent">✳</span>&nbsp;&nbsp;Portfolio</span>
+      <span class="label">Bangalore, India</span>
+    </div>
+
+    <div class="mid">
+      <div class="mid-text">
+      <h1>Athul K V</h1>
+      <div class="role">Java Full Stack Developer</div>
+      <div class="blurb">
+        Computer Science graduate building REST APIs, relational schemas and
+        secure role-based applications.
+      </div>
+      </div>
+      <div class="disc"><span>AK</span></div>
+    </div>
+
+    <div class="foot">
+      <div class="stack">
+        <span class="chip">Java 17</span>
+        <span class="chip">Spring Boot</span>
+        <span class="chip">React.js</span>
+        <span class="chip">MySQL</span>
+        <span class="chip">Hibernate/JPA</span>
+      </div>
+      <span class="label">github.com/kvathul7</span>
+    </div>
+  </body>
+</html>
