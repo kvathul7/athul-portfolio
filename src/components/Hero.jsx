@@ -11,8 +11,10 @@ function Stamp() {
   // pile up on top of each other at the start point.
   const text = editorial.badge.toUpperCase()
 
+  // Solid backing and hairline: the badge overlaps the portrait, and the
+  // rotating text was illegible where it crossed the dark shirt.
   return (
-    <div className="relative h-[98px] w-[98px] sm:h-[120px] sm:w-[120px]">
+    <div className="relative h-[98px] w-[98px] rounded-full border border-line bg-bg sm:h-[120px] sm:w-[120px]">
       <svg
         viewBox="0 0 100 100"
         className="h-full w-full animate-spin-slow text-muted"
@@ -22,10 +24,10 @@ function Stamp() {
           <path
             id="stamp-path"
             fill="none"
-            d="M 50,50 m -39,0 a 39,39 0 1,1 78,0 a 39,39 0 1,1 -78,0"
+            d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
           />
         </defs>
-        <text fill="currentColor" fontSize="5.1" letterSpacing="0.62" className="font-sans">
+        <text fill="currentColor" fontSize="4.7" letterSpacing="0.5" className="font-sans">
           <textPath href="#stamp-path" startOffset="0">
             {text}
           </textPath>
@@ -180,32 +182,31 @@ export default function Hero() {
           {/* Visual area: terracotta disc + monogram, with the stamp overlapping. */}
           <motion.div
             {...fade(0.3)}
-            className="relative mx-auto w-full max-w-[420px] lg:col-span-5 lg:mx-0 lg:max-w-none"
+            className="relative mx-auto w-full max-w-[360px] lg:col-span-5 lg:mx-0 lg:ml-auto lg:max-w-[400px]"
           >
-            <div className="relative aspect-square w-full">
-              {/* Portrait sits on a soft tint of the accent and is clipped by
-                  the circle. Height is held under 100% and bottom-anchored so
-                  the head clears the curve at the top of the circle. */}
-              <div className="absolute inset-0 overflow-hidden rounded-full bg-accent-soft">
-                <img
-                  src={profile.photo}
-                  alt={`${profile.name}, ${profile.title}`}
-                  width="795"
-                  height="1000"
-                  fetchPriority="high"
-                  decoding="async"
-                  className="absolute bottom-0 left-1/2 h-[92%] w-auto max-w-none -translate-x-1/2 object-contain"
-                />
-              </div>
-              <div
-                className="absolute inset-0 rounded-full border border-line"
+            {/* A framed editorial portrait, not a circular avatar: a circle
+                slices the shoulders off a head-and-shoulders studio shot and
+                leaves it reading as a cut-out sticker. */}
+            <div className="relative aspect-[4/5] w-full overflow-hidden border border-line bg-elevated">
+              <img
+                src={profile.photo}
+                alt={`${profile.name}, ${profile.title}`}
+                width="869"
+                height="1180"
+                fetchPriority="high"
+                decoding="async"
+                className="h-full w-full object-cover object-top"
+              />
+              {/* Hairline rule across the base, tying the frame to the grid. */}
+              <span
                 aria-hidden="true"
+                className="absolute inset-x-0 bottom-0 h-px bg-line"
               />
             </div>
 
             {/* Sits in the empty corner outside the disc so the rotating text
                 never runs across the terracotta. */}
-            <div className="absolute -bottom-4 -left-3 z-10 sm:-bottom-6 sm:-left-5 lg:-bottom-8 lg:-left-9">
+            <div className="absolute -bottom-7 -left-5 z-10 sm:-bottom-8 sm:-left-8">
               <Stamp />
             </div>
           </motion.div>
