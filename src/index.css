@@ -112,7 +112,7 @@
 
   /* Tech tags — hairline outline, no fill, no radius. */
   .tag {
-    @apply inline-flex items-center border border-line px-2.5 py-1 font-mono text-[10.5px] tracking-tight text-muted transition-colors duration-300 sm:text-[11px];
+    @apply inline-flex items-center border border-line px-2.5 py-1 font-mono text-[10.5px] leading-[1.6] tracking-tight text-muted transition-colors duration-300 sm:text-[11px];
   }
 
   .tag-accent {

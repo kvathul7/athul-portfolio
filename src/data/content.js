@@ -79,8 +79,8 @@ export const experience = [
 export const projects = [
   {
     featured: true,
-    name: 'HR Management System (HRMS)',
-    short: 'HRMS',
+    name: 'AXVON HRMS',
+    short: 'AXVON HRMS',
     year: 'June 2026',
     role: 'Java Full Stack',
     repo: 'https://github.com/kvathul7/hrms',
@@ -180,17 +180,6 @@ export const skills = [
     group: 'Tools',
     items: ['Git', 'GitHub', 'Bitbucket', 'Fork', 'VS Code', 'Eclipse'],
   },
-  {
-    group: 'Creative & Marketing',
-    note: 'Beginner',
-    items: [
-      'Social media handling',
-      'Content creation',
-      'AI content creation',
-      'Photo & video editing',
-      'Digital marketing',
-    ],
-  },
 ]
 
 export const education = [
@@ -245,8 +234,11 @@ export const editorial = {
   ],
   // Short display labels for the project covers, keyed by project.short.
   projectMeta: {
-    HRMS: { subtitle: 'HR Management Platform', cover: 'HRMS' },
-    NIDS: { subtitle: 'Network Security Tool', cover: 'NIDS' },
+    'AXVON HRMS': {
+      subtitle: 'HR Management Platform',
+      coverLines: ['AXVON', 'HRMS'],
+    },
+    NIDS: { subtitle: 'Network Security Tool', coverLines: ['NIDS'] },
   },
   // Pull quote for the skills spread — taken verbatim from the About copy.
   pullQuote:

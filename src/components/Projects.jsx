@@ -19,16 +19,18 @@ function Cover({ p, meta, dark }) {
         dark ? 'border-ink bg-ink' : 'border-line bg-elevated'
       }`}
     >
-      {/* Head — logo sits in a fixed-height slot so it aligns with the label. */}
-      <div className="flex items-center justify-between gap-4">
-        <span className="flex items-center gap-3.5">
+      {/* Head — logo sits in a fixed-height slot so it aligns with the label.
+          Below sm the label drops under the logo: inline beside it there is not
+          enough room left of the year, and it broke across two lines. */}
+      <div className="flex items-start justify-between gap-4">
+        <span className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:gap-3.5">
           {p.logo && (
             <span className="flex h-9 items-center">
               <Logo src={p.logo} alt={`${p.short} logo`} size="md" />
             </span>
           )}
           <span
-            className={`text-[10px] uppercase tracking-label ${
+            className={`text-[10px] uppercase leading-relaxed tracking-label ${
               dark ? 'text-bg/55' : 'text-faint'
             }`}
           >
@@ -40,17 +42,24 @@ function Cover({ p, meta, dark }) {
         </span>
       </div>
 
-      {/* Wordmark */}
-      <div>
-        <span
-          className={`block leading-[0.85] ${dark ? 'text-bg' : 'text-ink'}`}
-          style={{
-            fontFamily: 'Anton, Impact, sans-serif',
-            fontSize: 'clamp(3rem, 11vw, 6.5rem)',
-          }}
-        >
-          {meta.cover}
-        </span>
+      {/* Wordmark — set as a stacked lockup so a two-word name keeps the same
+          commanding size as a one-word one instead of shrinking to fit. */}
+      <div className={dark ? 'text-bg' : 'text-ink'}>
+        {meta.coverLines.map((line) => (
+          <span
+            key={line}
+            className="block leading-[0.86] tracking-[-0.01em]"
+            style={{
+              fontFamily: 'Anton, Impact, sans-serif',
+              fontSize:
+                meta.coverLines.length > 1
+                  ? 'clamp(2.5rem, 8.5vw, 5.25rem)'
+                  : 'clamp(3rem, 11vw, 6.5rem)',
+            }}
+          >
+            {line}
+          </span>
+        ))}
       </div>
 
       {/* Foot: modules for HRMS, stack for anything without them */}
@@ -103,7 +112,7 @@ function Cover({ p, meta, dark }) {
 }
 
 function ProjectRow({ p, index, flip }) {
-  const meta = editorial.projectMeta[p.short] ?? { subtitle: p.role, cover: p.short }
+  const meta = editorial.projectMeta[p.short] ?? { subtitle: p.role, coverLines: [p.short] }
 
   return (
     <article className="grid grid-cols-1 items-start gap-y-10 border-b border-line py-12 lg:grid-cols-12 lg:gap-x-14 lg:py-20">
