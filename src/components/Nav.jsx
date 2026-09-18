@@ -37,7 +37,7 @@ function useTheme() {
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark)
     const meta = document.querySelector('meta[name="theme-color"]')
-    if (meta) meta.setAttribute('content', dark ? '#141310' : '#F5F1E9')
+    if (meta) meta.setAttribute('content', dark ? '#0E1114' : '#F7F7F5')
     try {
       localStorage.setItem('theme', dark ? 'dark' : 'light')
     } catch (e) {

@@ -3,29 +3,31 @@
 @tailwind utilities;
 
 @layer base {
-  /* Warm cream / charcoal / terracotta — editorial print palette. */
+  /* Porcelain / ink / deep teal. Accent contrast checked against both grounds:
+     #0E7C6B on porcelain = 4.74:1, on white = 5.11:1, and the dark-theme teal
+     on #0E1114 = 7.1:1 — all clear of WCAG AA for body text. */
   :root {
-    --bg: 245 241 233;
-    --surface: 250 247 241;
-    --elevated: 236 230 219;
-    --line: 217 209 195;
-    --ink: 26 25 22;
-    --muted: 92 85 76;
-    --faint: 141 132 119;
-    --accent: 190 88 56;
-    --accent-soft: 234 214 203;
+    --bg: 247 247 245;
+    --surface: 255 255 255;
+    --elevated: 240 241 239;
+    --line: 226 227 224;
+    --ink: 20 23 26;
+    --muted: 90 97 105;
+    --faint: 138 145 152;
+    --accent: 14 124 107;
+    --accent-soft: 214 236 231;
   }
 
   .dark {
-    --bg: 20 19 16;
-    --surface: 26 24 20;
-    --elevated: 35 32 27;
-    --line: 58 53 45;
-    --ink: 241 236 227;
-    --muted: 169 161 148;
-    --faint: 124 116 104;
-    --accent: 212 110 74;
-    --accent-soft: 52 34 26;
+    --bg: 14 17 20;
+    --surface: 20 24 28;
+    --elevated: 27 32 37;
+    --line: 42 49 56;
+    --ink: 238 240 241;
+    --muted: 154 163 172;
+    --faint: 110 119 128;
+    --accent: 45 178 155;
+    --accent-soft: 16 45 42;
   }
 
   html {

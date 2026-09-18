@@ -50,7 +50,7 @@ function Rail({ children, side }) {
   return (
     <span
       className={`absolute top-0 hidden items-center gap-4 xl:flex ${
-        side === 'left' ? 'left-0' : 'right-0'
+        side === 'left' ? '-left-9' : '-right-9'
       }`}
     >
       <span
@@ -129,7 +129,7 @@ export default function Hero() {
           <Rail side="left">Java 17 — Spring Boot</Rail>
           <Rail side="right">MySQL — React.js</Rail>
 
-          <div className="lg:col-span-7 xl:pl-14">
+          <div className="lg:col-span-7">
             <motion.p {...fade(0.15)} className="label">
               Hello, I&rsquo;m
             </motion.p>
@@ -180,19 +180,27 @@ export default function Hero() {
           {/* Visual area: terracotta disc + monogram, with the stamp overlapping. */}
           <motion.div
             {...fade(0.3)}
-            className="relative mx-auto w-full max-w-[420px] lg:col-span-5 lg:mx-0 lg:max-w-none xl:pr-14"
+            className="relative mx-auto w-full max-w-[420px] lg:col-span-5 lg:mx-0 lg:max-w-none"
           >
             <div className="relative aspect-square w-full">
-              <div className="absolute inset-[11%] rounded-full bg-accent" aria-hidden="true" />
+              {/* Portrait sits on a soft tint of the accent and is clipped by
+                  the circle. Height is held under 100% and bottom-anchored so
+                  the head clears the curve at the top of the circle. */}
+              <div className="absolute inset-0 overflow-hidden rounded-full bg-accent-soft">
+                <img
+                  src={profile.photo}
+                  alt={`${profile.name}, ${profile.title}`}
+                  width="795"
+                  height="1000"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="absolute bottom-0 left-1/2 h-[92%] w-auto max-w-none -translate-x-1/2 object-contain"
+                />
+              </div>
               <div
                 className="absolute inset-0 rounded-full border border-line"
                 aria-hidden="true"
               />
-              <span className="absolute inset-0 grid place-items-center">
-                <span className="font-serif text-[clamp(4rem,14vw,7.5rem)] leading-none text-bg">
-                  {profile.initials}
-                </span>
-              </span>
             </div>
 
             {/* Sits in the empty corner outside the disc so the rotating text

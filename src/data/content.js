@@ -13,6 +13,7 @@ export const profile = {
   linkedin: 'https://linkedin.com/in/athul-kv-16a3ab256',
   linkedinHandle: 'athul-kv-16a3ab256',
   resume: '/Athul_KV_Resume.pdf',
+  photo: '/photo/athul.webp',
   // Roles Athul is open to — shown as an "Open to" band under the hero.
   roles: [
     'Java Developer',
